@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { LoadUnits } from '../../store/actions';
 
 @Component({
-  selector: 'not-landing',
+  selector: 'not-landing-form',
   template: `<h1>Not Landing Page</h1>`,
 })
 export class NotLandingFormComponent implements OnInit{

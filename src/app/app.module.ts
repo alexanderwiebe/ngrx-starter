@@ -22,7 +22,7 @@ import { LandingFormComponent, NotLandingFormComponent } from './core/components
     StoreDevtoolsModule.instrument(),
     AppRoutingModule
   ],
-  declarations: [ AppComponent, LandingComponent, NotLandingComponent ],
+  declarations: [ AppComponent, LandingComponent, NotLandingComponent, LandingFormComponent, NotLandingFormComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
