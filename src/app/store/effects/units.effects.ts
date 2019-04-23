@@ -23,7 +23,7 @@ export class UnitsEffects {
           entities =>
             new LoadUnitsSuccess({
               yearId: payload.yearId,
-              entities,
+              entities
             })
         ),
         catchError(error =>

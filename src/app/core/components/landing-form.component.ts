@@ -11,7 +11,7 @@ import { Unit } from '../models/units.model';
     <ul>
       <li *ngFor="let unit of rootUnits">{{ unit.name }}</li>
     </ul>
-  `,
+  `
 })
 export class LandingFormComponent {
   @Input() units: Unit[];

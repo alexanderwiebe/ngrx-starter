@@ -2,7 +2,7 @@ import {
   EntityState,
   EntityAdapter,
   createEntityAdapter,
-  Dictionary,
+  Dictionary
 } from '@ngrx/entity';
 import { UnitsActions, UnitsActionTypes } from '../actions';
 import { Unit } from '../../core/models/units.model';
@@ -15,15 +15,18 @@ export interface UnitsState extends EntityState<Unit> {
 }
 
 export interface UnitsYearState {
-  [id: string]: UnitsState;
+  currentYearId: string;
+  years: {
+    [id: string]: UnitsState;
+  };
 }
 
 export const initialUnitState: UnitsState = adapter.getInitialState({
   loaded: false,
-  loading: false,
+  loading: false
 });
 
-export const initialState: UnitsYearState = {};
+export const initialState: UnitsYearState = { currentYearId: '', years: {} };
 
 export function reducer(
   state = initialState,
@@ -33,31 +36,38 @@ export function reducer(
     case UnitsActionTypes.LoadUnits: {
       return {
         ...state,
-        [action.payload.yearId]: { ...initialUnitState, loading: true },
+        currentYearId: action.payload.yearId,
+        years: {
+          ...state.years,
+          [action.payload.yearId]: { ...initialUnitState, loading: true }
+        }
       };
     }
 
     case UnitsActionTypes.LoadUnitsSuccess: {
       const entities = action.payload.entities;
-
       return {
         ...state,
-        [action.payload.yearId]: adapter.upsertMany(entities, {
-          ...state[action.payload.yearId],
-          loading: false,
-          loaded: true,
-        }),
+        years: {
+          [action.payload.yearId]: adapter.upsertMany(entities, {
+            ...state[action.payload.yearId],
+            loading: false,
+            loaded: true
+          })
+        }
       };
     }
 
     case UnitsActionTypes.LoadUnitsFail: {
       return {
         ...state,
-        [action.payload.yearId]: {
-          ...state[action.payload.yearId],
-          loading: false,
-          loaded: false,
-        },
+        years: {
+          [action.payload.yearId]: {
+            ...state[action.payload.yearId],
+            loading: false,
+            loaded: false
+          }
+        }
       };
     }
     default:

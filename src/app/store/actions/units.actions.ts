@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 export enum UnitsActionTypes {
   LoadUnits = '[Units] Load',
   LoadUnitsSuccess = '[Units] Load Success',
-  LoadUnitsFail = '[Units] Load Fail',
+  LoadUnitsFail = '[Units] Load Fail'
 }
 
 export class LoadUnits implements Action {

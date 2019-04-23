@@ -8,18 +8,18 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: LandingComponent,
-      },
-    ],
+        component: LandingComponent
+      }
+    ]
   },
   {
     path: 'notLanding',
-    component: NotLandingComponent,
-  },
+    component: NotLandingComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

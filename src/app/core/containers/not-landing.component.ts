@@ -9,7 +9,7 @@ import { LoadUnits } from '../../store/actions';
   selector: 'not-landing',
   template: `
     <not-landing-form></not-landing-form>
-  `,
+  `
 })
 export class NotLandingComponent {
   units$: Observable<Unit[]>;

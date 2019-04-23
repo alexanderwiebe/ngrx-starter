@@ -12,13 +12,13 @@ export class UnitsService {
       <Unit>{
         id: '1',
         name: 'meter',
-        abbreviation: 'm',
+        abbreviation: 'm'
       },
       <Unit>{
         id: '2',
         name: 'second',
-        abbreviation: 's',
-      },
+        abbreviation: 's'
+      }
     ]);
   }
 }
