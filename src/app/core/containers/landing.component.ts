@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Unit } from '../models/units.model';
 import { LoadUnits } from '../../store/actions';
-import { getUnits } from '../../store/selectors/units.selector';
+import { getUnits, getAllUnits } from '../../store/selectors/units.selector';
 
 @Component({
   selector: 'landing',
@@ -24,7 +24,7 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new LoadUnits({ yearId: 'ab34' }));
     this.store.dispatch(new LoadUnits({ yearId: '34ba' }));
-    this.units$ = this.store.pipe(select(getUnits));
-    this.rootUnits$ = this.store.pipe(select(getUnits, { yearId: 'ab34' }));
+    // this.units$ = this.store.pipe(select(getUnits));
+    this.rootUnits$ = this.store.pipe(select(getAllUnits));
   }
 }

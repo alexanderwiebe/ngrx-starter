@@ -50,7 +50,7 @@ export function reducer(
         ...state,
         years: {
           [action.payload.yearId]: adapter.upsertMany(entities, {
-            ...state[action.payload.yearId],
+            ...state.years[action.payload.yearId],
             loading: false,
             loaded: true
           })

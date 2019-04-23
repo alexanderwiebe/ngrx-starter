@@ -1,18 +1,24 @@
+import { EntityState } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UnitsState, UnitsYearState, adapter } from '../reducers/units.reducer';
 import { AppState } from '../reducers';
+import { Unit } from '../../core/models';
 
 export const getUnitsState = createFeatureSelector<UnitsYearState>('units');
 
+export const getUnitsFromRoot = (state: AppState) => {
+  return state.units;
+};
+
 // export const getCurrentUnits = createSelector(
 //   getUnitsState,
-//   (state: UnitsYearState, props): UnitsState => {
-//     return state[props.yearId];
+//   (state: UnitsYearState, props): EntityState<Unit> => {
+//     return state.years[state.currentYearId];
 //   }
 // );
 
-export const getUnitsFromRoot = (state: AppState) => {
-  return state.units.entities;
+export const getCurrentUnitsFromRoot = (state: AppState) => {
+  return state.units.years[state.units.currentYearId];
 };
 
 export const {
@@ -20,7 +26,7 @@ export const {
   selectEntities: getUnitEntities,
   selectAll: getAllUnits,
   selectTotal: getTotalUnits
-} = adapter.getSelectors(getCurrentUnits);
+} = adapter.getSelectors(getCurrentUnitsFromRoot);
 
 // export const getUnits = createSelector(
 //   getUnitsState,
