@@ -7,17 +7,18 @@ import { Unit } from '../models/units.model';
 export class UnitsService {
   constructor() {}
 
-  getUnits(): Observable<Unit[]> {
+  getUnits(yearId: string): Observable<Unit[]> {
     return of([
       <Unit>{
-        id:'1',
-        name:'meter',
-        abbreviation:'m'
-      },<Unit>{
-        id:'2',
-        name:'second',
-        abbreviation:'s'
-      }
+        id: '1',
+        name: 'meter',
+        abbreviation: 'm',
+      },
+      <Unit>{
+        id: '2',
+        name: 'second',
+        abbreviation: 's',
+      },
     ]);
   }
 }

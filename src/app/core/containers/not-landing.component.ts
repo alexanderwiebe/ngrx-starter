@@ -7,12 +7,14 @@ import { LoadUnits } from '../../store/actions';
 
 @Component({
   selector: 'not-landing',
-  template: `<not-landing-form></not-landing-form>`,
+  template: `
+    <not-landing-form></not-landing-form>
+  `,
 })
-export class NotLandingComponent{
+export class NotLandingComponent {
   units$: Observable<Unit[]>;
 
-  constructor(private store: Store<any>){}
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
     // this.store.dispatch(new LoadUnits());

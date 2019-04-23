@@ -11,7 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LandingComponent, NotLandingComponent } from './core/containers';
-import { LandingFormComponent, NotLandingFormComponent } from './core/components';
+import {
+  LandingFormComponent,
+  NotLandingFormComponent,
+} from './core/components';
 
 @NgModule({
   imports: [
@@ -20,9 +23,15 @@ import { LandingFormComponent, NotLandingFormComponent } from './core/components
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument(),
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  declarations: [ AppComponent, LandingComponent, NotLandingComponent, LandingFormComponent, NotLandingFormComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [
+    AppComponent,
+    LandingComponent,
+    NotLandingComponent,
+    LandingFormComponent,
+    NotLandingFormComponent,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,3 @@
-
-
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent, NotLandingComponent } from './core/containers';
@@ -11,14 +8,14 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: LandingComponent
-      }
-    ]
+        component: LandingComponent,
+      },
+    ],
   },
   {
     path: 'notLanding',
-    component: NotLandingComponent
-  }
+    component: NotLandingComponent,
+  },
 ];
 
 @NgModule({

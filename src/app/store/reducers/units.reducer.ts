@@ -1,46 +1,63 @@
+import {
+  EntityState,
+  EntityAdapter,
+  createEntityAdapter,
+  Dictionary,
+} from '@ngrx/entity';
 import { UnitsActions, UnitsActionTypes } from '../actions';
 import { Unit } from '../../core/models/units.model';
 
-export interface UnitsState {
-  entities: Unit[];
+export const adapter: EntityAdapter<Unit> = createEntityAdapter<Unit>();
+
+export interface UnitsState extends EntityState<Unit> {
   loaded: boolean;
   loading: boolean;
 }
 
-export const initialState: UnitsState = {
-  entities: [],
+export interface UnitsYearState {
+  [id: string]: UnitsState;
+}
+
+export const initialUnitState: UnitsState = adapter.getInitialState({
   loaded: false,
-  loading: false
-};
+  loading: false,
+});
+
+export const initialState: UnitsYearState = {};
 
 export function reducer(
   state = initialState,
   action: UnitsActions
-): UnitsState {
+): UnitsYearState {
   switch (action.type) {
     case UnitsActionTypes.LoadUnits: {
       return {
         ...state,
-        loading: true
+        [action.payload.yearId]: { ...initialUnitState, loading: true },
       };
     }
 
     case UnitsActionTypes.LoadUnitsSuccess: {
-      const entities = action.payload;
+      const entities = action.payload.entities;
 
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        entities
+        [action.payload.yearId]: adapter.upsertMany(entities, {
+          ...state[action.payload.yearId],
+          loading: false,
+          loaded: true,
+        }),
       };
     }
 
     case UnitsActionTypes.LoadUnitsFail: {
       return {
         ...state,
-        loading: false,
-        loaded: false
+        [action.payload.yearId]: {
+          ...state[action.payload.yearId],
+          loading: false,
+          loaded: false,
+        },
       };
     }
     default:
