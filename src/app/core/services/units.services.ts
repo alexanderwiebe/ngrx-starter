@@ -11,11 +11,13 @@ export class UnitsService {
     return of([
       <Unit>{
         id: '1',
+        yearId: yearId,
         name: 'meter',
         abbreviation: 'm'
       },
       <Unit>{
         id: '2',
+        yearId: yearId,
         name: 'second',
         abbreviation: 's'
       }
